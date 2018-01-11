@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SehatClone.Models.Center>
+@{
+    ViewBag.Title = "Centers";
+}
+
+<h2 class="text-center">Centers</h2>
+<hr />
+
+@if (Model.Count() > 0)
+{
+    foreach (var center in Model)
+    {
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="box doctor">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="@center.ImageUrl" alt="Center Image" class="img-circle img-responsive" />
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-1">
+                            <h3>
+                                @center.Name
+                            </h3>
+                            <h5>
+                                <strong>Contact Name : </strong>
+                                @center.ContactName
+                            </h5>
+                            <h5>
+                                <i class="glyphicon glyphicon-map-marker"></i>
+                                @center.City
+                            </h5>
+                            <h5>
+                                <i class="glyphicon glyphicon-phone"></i>
+                                @center.Phone
+                            </h5>
+                        </div>
+                    </div>
+                    <hr />
+                    <a href="@Url.Action("Detail", "Centers", new { id = center.Id })" class="btn btn-block btn-success">
+                        View Detail
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="alert alert-danger">
+                No Centers To Show
+            </div>
+        </div>
+    </div>
+}
+

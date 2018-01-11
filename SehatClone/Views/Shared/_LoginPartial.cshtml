@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            @if (User.IsInRole("admin"))
+            {
+                <li class="dropdown">
+                    <a href="@Url.Action("Index", "Admin")">
+                        Admin Panel
+                    </a>
+                </li>
+            }
+            <li>
+                <a href="@Url.Action("Show", "Articles")">Articles</a>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@*@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })*@</li>
+        <li>@*@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })*@</li>
+        <li>
+            <a href="@Url.Action("Show", "Articles")">Articles</a>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Login
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Login", "Account")">User / Admin</a></li>
+                <li><a href="@Url.Action("Login", "Doctors")">Doctor</a></li>
+                <li><a href="@Url.Action("Login", "Centers")">Center</a></li>
+                <li><a href="@Url.Action("Login", "Donors")">Donor</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Register
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Register", "Account")">User</a></li>
+                <li><a href="@Url.Action("Register", "Doctors")">Doctor</a></li>
+                <li><a href="@Url.Action("Register", "Centers")">Center</a></li>
+                <li><a href="@Url.Action("Register", "Donors")">Donor</a></li>
+            </ul>
+        </li>
+    </ul>
+}

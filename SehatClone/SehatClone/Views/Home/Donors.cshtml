@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SehatClone.Models.Donor>
+@{
+    ViewBag.Title = "Donors";
+}
+
+<h2 class="text-center">Donors</h2>
+<hr />
+
+@if (Model.Count() > 0)
+{
+    foreach (var donor in Model)
+    {
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="box doctor">
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <h3>
+                                Name : 
+                                @donor.Name
+                            </h3>
+                            <h5>
+                                Blood Type : 
+                                @donor.Type
+                            </h5>
+                        </div>
+                        <div class="col-sm-3">
+                            <h5>
+                                <i class="glyphicon glyphicon-map-marker"></i>
+                                @donor.Location
+                            </h5>
+                            <h5>
+                                <i class="glyphicon glyphicon-phone"></i>
+                                @donor.Phone
+                            </h5>
+                            <h5>
+                                <i class="glyphicon glyphicon-envelope"></i>
+                                @donor.Email
+                            </h5>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="alert alert-danger">
+                No Donors To Show
+            </div>
+        </div>
+    </div>
+}
+

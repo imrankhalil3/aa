@@ -1,0 +1,206 @@
+﻿@model SehatClone.ViewModel.AdminIndexVm
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2 class="text-primary text-center">Admin Panel</h2>
+<hr />
+
+
+<div class="container">
+
+    <a class="btn btn-primary" href="@Url.Action("Index", "Articles")">Articles</a>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h3 class="text-center">Doctors</h3>
+
+            @if (Model.Doctors.Count > 0)
+            {
+                <table id="doctors" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>Speciality</th>
+                            <th>Approve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var doctor in Model.Doctors)
+                        {
+                            <tr>
+                                <td>@doctor.Name</td>
+                                <td>@doctor.Email</td>
+                                <td>@doctor.City</td>
+                                <td>@doctor.Gender</td>
+                                <td>@doctor.Phone</td>
+                                <td>
+                                    @if (doctor.Speciality.Count > 0)
+                                    {
+                                        @doctor.Speciality[0].Name
+                                    }
+                                    else
+                                    {
+                                        <text>no speciality</text>
+                                    }
+                                </td>
+                                <td>
+                                    @if (!doctor.IsApproved)
+                                    {
+                                        <a href="@Url.Action("ApproveDoctor", "Admin", new { id = doctor.Id })" class="btn btn-primary">Approve</a>
+                                    }
+                                    else
+                                    {
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    No Doctors To Show
+                </div>
+            }
+
+        </div>
+    </div>
+    <hr />
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h3 class="text-center">Centers</h3>
+
+            @if (Model.Centers.Count > 0)
+            {
+                <table id="centers" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Type</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Approve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var center in Model.Centers)
+                        {
+                            <tr>
+                                <td>@center.Name</td>
+                                <td>@center.Email</td>
+                                <td>@center.ContactName</td>
+                                <td>
+                                    @if (center.Type != null)
+                                    {
+                                        <text>
+                                            @center.Type.Name
+                                        </text>
+                                    }
+                                </td>
+                                <td>@center.City</td>
+                                <td>@center.Phone</td>
+                                <td>
+                                    @if (!center.IsApproved)
+                                    {
+                                        <a href="@Url.Action("ApproveCenter", "Admin", new { id = center.Id })" class="btn btn-primary">Approve</a>
+                                    }
+                                    else
+                                    {
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    No Doctors To Show
+                </div>
+            }
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h3 class="text-center">Donors</h3>
+
+            @if (Model.Donors.Count > 0)
+            {
+                <table id="donors" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Type</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Approve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var donor in Model.Donors)
+                        {
+                            <tr>
+                                <td>@donor.Name</td>
+                                <td>@donor.Email</td>
+                                <td>@donor.Location</td>
+                                <td>
+                                    @donor.Type
+                                </td>
+                                <td>@donor.Phone</td>
+                                <td>
+                                <td>
+                                    @if (!donor.IsApproved)
+                                    {
+                                        <a href="@Url.Action("ApproveDonor", "Admin", new { id = donor.Id })" class="btn btn-primary">Approve</a>
+                                    }
+                                    else
+                                    {
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    No Donors To Show
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#doctors').DataTable();
+            $('#centers').DataTable();
+            $('#donors').DataTable();
+        })
+      
+    </script>
+}

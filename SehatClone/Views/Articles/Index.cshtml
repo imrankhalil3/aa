@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SehatClone.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-primary text-center">Articles</h2>
+
+<div class="container">
+
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Create", "Articles")">Create</a>
+    </p>
+
+    @if (Model.Count() > 0)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Content)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateTime)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var article in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => article.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => article.Content)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => article.Type.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => article.DateTime)
+                            </td>
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = article.Id }) |*@
+                                <a class="btn btn-danger" href="@Url.Action("Delete", "Articles", new { id = article.Id })">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-danger">
+                    No Articles To Show
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

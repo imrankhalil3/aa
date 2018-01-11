@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SehatClone.Models.Article>
+@{
+    ViewBag.Title = "Articles";
+}
+
+<h2 class="text-center text-primary">Articles</h2>
+<hr />
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <form action="@Url.Action("Show", "Articles")">
+                <input placeholder="Enter Article Title" type="text" class="form-control" name="article" />
+                <br />
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </form>
+            
+        </div>
+    </div>
+    <br />
+    <br />
+
+    @foreach (var article in Model)
+    {
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h5 class="pull-right">
+                            @article.DateTime.ToShortDateString()
+                        </h5>
+                        <h1 style="font-size: 1.7em;" class="panel-title">
+                            @article.Title
+                        </h1>
+                        <h5>@article.Type.Name</h5>
+                    </div>
+                    <div class="panel-body">
+                        @article.Content
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,113 @@
+﻿@model SehatClone.Models.Center
+@{
+    ViewBag.Title = "Center Detail";
+}
+
+<h2 class="text-center">Center Detail</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="box doctor">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="@Model.ImageUrl" alt="Doctor Image" class="img-circle img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-sm-offset-1">
+                        <h3>
+                            <strong>Name : </strong>
+                            @Model.Name
+                        </h3>
+                        <h5>
+                            <strong>Contact Name : </strong>
+                            @Model.ContactName
+                        </h5>
+                        <h5>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            @Model.City
+                        </h5>
+                        <h5>
+                            <i class="glyphicon glyphicon-phone"></i>
+                            @Model.Phone
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <h3>Description</h3>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p class="alert alert-info">
+                        @Model.Description
+                    </p>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        No Description Available
+                    </div>
+                }
+
+            </div>
+            <br />
+            <div class="box">
+                <h3>Services</h3>
+               @if (Model.Services.Count > 0)
+               {
+                <ul class="list-group">
+                    @foreach (var serivce in Model.Services)
+                    {
+                        <li class="list-group-item">
+                            @serivce.Name
+                        </li>
+                    }
+                </ul>
+               }
+               else
+               {
+                   <div class="alert alert-info">
+                       No Services To Show
+                   </div>
+               }
+            </div>
+
+            <br />
+
+            <div class="box">
+                <h3>Timings</h3>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p class="alert alert-info">
+                        @Model.Timings
+                    </p>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        No Timings Available
+                    </div>
+                }
+            </div>
+
+            <br />
+
+            <div class="box">
+                <h3>General Info</h3>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p class="alert alert-info">
+                        For @Model.ForGender
+                    </p>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        No General Info Available
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,77 @@
+﻿@model SehatClone.Models.Doctor
+@{
+    ViewBag.Title = "Doctor Detail";
+}
+
+<h2 class="text-center">Doctor Detail</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="box doctor">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="@Model.ImageUrl" alt="Doctor Image" class="img-circle img-responsive" />
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>
+                            @Model.Name
+                        </h3>
+                        <p>
+                            @Model.Education
+                        </p>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            @Model.City
+                        </h5>
+                        <h5>
+                            <i class="glyphicon glyphicon-phone"></i>
+                            @Model.Phone
+                        </h5>
+                        <h5>
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            @Model.ExperienceInYears
+                            years experience
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <h3>Description</h3>
+                <p>
+                    @Model.Description
+                </p>
+                <p class="well well-sm">
+                    <i class="glyphicon glyphicon-link"></i>
+                    @Model.Website
+                </p>
+            </div>
+            <br />
+            <div class="box">
+                <h3>Sepcialities</h3>
+                @if (Model.Speciality.Count > 0)
+                {
+                    <ul class="list-group">
+                        @foreach (var speciality in Model.Speciality)
+                        {
+                            <li class="list-group-item">
+                                @speciality.Name
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        No Specialities
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron text-center mainBack">
+    <h1>Find the Right Doctor and Center</h1>
+    <hr />
+
+    <div class="searchArea container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <form action="@Url.Action("Search", "Home")" method="post">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select name="UserType" class="form-control txtSearchElement pull-right">
+                                <option value="doctor">Doctor</option>
+                                <option value="center">Center</option>
+                                <option value="donor">Donor</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input name="SearchTxt" placeholder="Search By Name, Doctor Speciality" type="text" class="txtSearchElement form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input name="Location" placeholder="Search By Location" type="text" class="txtSearchElement pull-left form-control" />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <h2>
+            Know your Doctor before you Schedule an Appointment
+        </h2>
+        <p>
+            Research and choose the right doctor and the right hospital to get the right care.
+        </p>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-3 box col-sm-offset-2 text-center">
+        <h3>Right Doctor</h3>
+        <p>
+            Sehat lets you search by medical condition or procedure to find a doctor experienced in your treatment.
+        </p>
+        <button style="background-color:#3BC8E1; border:#3BC8E1;" class="btn btn-primary">
+            Find The Right Doctor
+        </button>
+    </div>
+    <div class="col-sm-3 box col-sm-offset-2 text-center">
+        <h3>Right Care</h3>
+        <p>
+            It’s also important to be an informed patient. Use our 'Ask a Doctor' feature to get medical advice.
+        </p>
+        <button style="background-color:#3BC8E1; border:#3BC8E1;" class="btn btn-primary">
+            Find The Right Care
+        </button>
+    </div>
+</div>
